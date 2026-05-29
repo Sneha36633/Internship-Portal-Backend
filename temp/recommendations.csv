@@ -1,0 +1,10 @@
+user_id,job_id,score,reasons
+1,101,0.6667002439498901,Stipend ≥ your minimum ₹15000; Mode: Remote; Verified employer
+1,102,0.07733672857284546,Mode: Remote; Verified employer
+1,103,-0.019016781821846962,Stipend ≥ your minimum ₹15000
+2,102,0.8921530246734619,Stipend ≥ your minimum ₹10000; Mode: Remote; Verified employer
+2,103,0.26500993967056274,Stipend ≥ your minimum ₹10000
+2,101,0.07412999123334885,Stipend ≥ your minimum ₹10000; Mode: Remote; Verified employer
+3,103,0.6967235803604126,Stipend ≥ your minimum ₹8000; Mode: Onsite
+3,102,0.43958717584609985,Stipend ≥ your minimum ₹8000; Verified employer
+3,101,0.11553150415420532,Stipend ≥ your minimum ₹8000; Verified employer

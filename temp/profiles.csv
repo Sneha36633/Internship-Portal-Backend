@@ -1,0 +1,4 @@
+user_id,skills,min_stipend,preferred_mode
+1,"python, machine learning, data analysis",15000,Remote
+2,"java, spring boot, backend development",10000,Remote
+3,"javascript, react, frontend development",8000,Onsite

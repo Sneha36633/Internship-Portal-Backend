@@ -1,0 +1,4 @@
+job_id,requirements,stipend,mode,verified
+101,"python, pandas, data science",20000,Remote,1
+102,"java, backend, spring",12000,Remote,1
+103,"react, frontend, html css",15000,Onsite,0
