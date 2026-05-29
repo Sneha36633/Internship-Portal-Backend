@@ -16,11 +16,14 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:5174",
-        "https://internship-portal-sandy.vercel.app"   # Backend (alternative)
+        "http://localhost:5173",      # Vite frontend
+        "http://localhost:5174",      # Vite frontend (alternative port)
+        "http://localhost:8000",      # Backend itself
+        "http://127.0.0.1:5173",      # Alternative localhost
+        "http://127.0.0.1:5174",      # Alternative localhost (alternative port)
+        "http://localhost:3000",      # Production frontend
+        "http://127.0.0.1:8000",
+        "https://internship-portal-sandy.vercel.app",
     ],
     allow_credentials=True,  # Set to False since we use JWT tokens
     allow_methods=["*"],
