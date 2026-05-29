@@ -11,32 +11,28 @@ from passlib.context import CryptContext
 from .crud import user_crud
 from .config.database import get_db
 
-# Load environment variables
 load_dotenv()
 
-# ---------------- PASSWORD HASHING ----------------
+# ================= PASSWORD HASHING =================
+# IMPORTANT: Render-safe config (no fancy overrides)
 
-# IMPORTANT: keep it simple for Render stability
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
 
 def get_password_hash(password: str) -> str:
-    """Hash password safely using bcrypt."""
     return pwd_context.hash(password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verify password safely."""
     return pwd_context.verify(plain_password, hashed_password)
 
 
-# ---------------- JWT CONFIG ----------------
-
+# ================= JWT CONFIG =================
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
-    "dev_only_change_this_to_a_long_random_secret"
+    "dev_only_change_this_to_a_long_random_secret_key"
 )
 
 ALGORITHM = "HS256"
@@ -45,10 +41,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 
-# ---------------- CREATE TOKEN ----------------
-
+# ================= TOKEN =================
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
-    """Generate JWT token."""
     to_encode = data.copy()
 
     expire = datetime.now(timezone.utc) + (
@@ -58,21 +52,14 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
     to_encode.update({"exp": expire})
 
-    return jwt.encode(
-        to_encode,
-        SECRET_KEY,
-        algorithm=ALGORITHM
-    )
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-# ---------------- GET CURRENT USER ----------------
-
+# ================= CURRENT USER =================
 def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
 ):
-    """Decode JWT and return current user."""
-
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
